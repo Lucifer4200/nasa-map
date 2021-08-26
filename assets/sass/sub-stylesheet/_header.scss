@@ -1,0 +1,154 @@
+.navbar {
+    &.fixed {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        z-index: 111;
+    }
+}
+
+form {
+    .input-group{
+        input.form-control {
+            opacity: 0;
+            border-radius: 5px 0 0 5px!important;
+            -webkit-transition: opacity .3s;
+            -moz-transition: opacity .3s;
+            transition: opacity .3s;
+            &.active {
+                opacity: 1;
+            }
+            &.style-one {
+                border-radius: 0 5px 5px 0!important;
+            }
+        }
+    }
+    button.search-icon{
+        font-size: 14px;
+        background: #0B3D91;
+        color: white;
+        height: 35px;
+        width: 35px;
+        cursor: pointer;
+        border-radius: 5px;
+        &.active {
+            border-radius: 0 5px 5px 0;
+        }
+        &.style-one {
+            border-radius: 5px;
+            &.active {
+                border-radius: 5px 0 0 5px;
+            }
+        }
+    }
+}
+
+//?==== header css start ====?//
+.navbar {
+    .navbar-brand {
+        img {
+            height: 50px;
+        }
+    }
+    .collapse {
+        .navbar-nav {
+            .nav-item {
+                position: relative;
+                &:hover {
+                    .sub-menu {
+                        top: 70px;
+                        transform: translateX(-50%)scaleY(1);
+                    }
+                }
+                .nav-link {
+                    color: #000;
+                    position: relative;
+                    &:hover {
+                        color: $theme-color;
+                        &::after {
+                            left: 0;
+                            right: auto;
+                            width: 100%;
+                        }
+                    }
+                    &::after {
+                        @extend %absolute;
+                        bottom: 0;
+                        right: 0;
+                        width: 0;
+                        height: 2px;
+                        background: $theme-color;
+                        transition: all 0.3s ease-in-out;
+                    }
+                }
+                .sub-menu {
+                    position: absolute;
+                    top: 50px;
+                    left: 50%;
+                    z-index: 9010;
+                    background: $white-color;
+                    @extend %shadow;
+                    padding: 20px;
+                    width: 200px;
+                    border-radius: 10px;
+                    transform-origin: top;
+                    transform: translateX(-50%)scaleY(0);
+                    transition: all 0.3s ease-in-out;
+                    &::before {
+                        position: absolute;
+                        content: "";
+                        top: -10px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        width: 20px;
+                        height: 10px;
+                        border-bottom: solid 10px #f4f4f4;
+                        border-left: solid 10px transparent;
+                        border-right: solid 10px transparent;
+                    }
+                    ul {
+                        margin: 0;
+                        padding: 0;
+                        list-style: none;
+                        li {
+                            a {
+                                margin: 5px;
+                                display: block;
+                                position: relative;
+                                text-decoration: none;
+                                transition: all 0.3s ease-in-out;
+                                &:hover {
+                                    span {
+                                        color: $theme-color;
+                                    }
+                                    &::after {
+                                        opacity: 1;
+                                    }
+                                }
+                                span {
+                                    color: #333;
+                                    font-size: 14px;
+                                }
+                                &::after {
+                                    @extend %absolute;
+                                    left: -24px;
+                                    top: 0;
+                                    width: 2px;
+                                    height: 20px;
+                                    opacity: 0;
+                                    background: $theme-color;
+                                    -webkit-transition: opacity 0.3s;
+                                    -moz-transition: opacity 0.3s;
+                                    transition: opacity 0.3s;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+//?==== header css ends  ====?//

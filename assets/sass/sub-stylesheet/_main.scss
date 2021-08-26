@@ -1,0 +1,463 @@
+//?=== map area css start ===?//
+.map-area {
+    padding: 60px 0;
+    overflow: hidden;
+    position: relative;
+    .map-menu-item {
+        .map-menu {
+            width: 280px;
+            position: absolute;
+            top: 0;
+            right: -280px;
+            bottom: 0;
+            z-index: 1;
+            height: 100vh;
+            border-radius: 10px 0 0 10px;
+            background: #f8f9faad;
+            transition: 0.3s ease-in-out;
+            padding: 16px 0 16px 20px;
+            @include breakpoint (sm) {
+                width: 350px;
+                right: -350px;
+            }
+            &.open {
+                right: 0;
+            }
+            .menu-bar {
+                position: absolute;
+                top: 20px;
+                left: -60px;
+                &.active {
+                    left: -38px;
+                    button {
+                        i {
+                            &::before {
+                                content: '\f00d';
+                            }
+                        }
+                    }
+                }
+                button {
+                    width: 40px;
+                    height: 40px;
+                    line-height: 20px;
+                    border-radius: 100%;
+                    background-color: rgba(19, 15, 15, 0.2);
+                    backdrop-filter: blur(5px);
+                    box-shadow: 0px 0px 1px rgba(255, 255, 255, 0.5), 
+                        2px 2px 5px rgba(0, 0, 0, 0.5);
+                    i {
+                        color:#333;
+                        font-size: 25px;
+                    }
+                }
+            }
+            ul.map-menu-list {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                max-height: 600px;
+                overflow-y: scroll;
+                li {
+                    margin-bottom: 5px;
+                    button {
+                        color: #000;
+                        padding: 5px;
+                        width: 100%;
+                        font-size: 14px;
+                        display: block;
+                        font-weight: 500;
+                        text-decoration: none;
+                        border-radius: 5px 0 0 5px;
+                        text-align: left;
+                        background: transparent;
+                        transition: all 0.3s ease-in-out;
+                        &:hover {
+                            color: $white-color;
+                            background: $theme-color
+                        }
+                        &.active {
+                            color: $white-color;
+                            background: $theme-color;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .section-wrapper {
+        #map-wrap {
+            position: relative;
+            width: 100%;
+            // height: 100vh;
+            padding-bottom: 50%;
+            overflow: hidden;
+            svg {
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: 100%;
+                width: 100%;
+                &:not(:root) {
+                    overflow: hidden;
+                }
+                .continent {
+                    margin-bottom: 40px;
+                }
+
+            }
+            .land {
+                fill: #E4E4E4;
+                stroke: #ccc;
+                transition: 250ms;
+                &.inactive {
+                    fill: #d5d5d5;
+                    fill: #c1c1c1;
+                    &:hover {
+                        fill: #ccc;
+                    }
+                }
+                &.hasinfo {
+                    fill: #A1C9E6;
+                    stroke: #ddd;
+                    cursor: pointer;
+                    &:hover {
+                        fill: #7daed0;
+                    }
+                }
+            }
+        }
+    }
+}
+//?=== map area css ends  ===?//
+
+//?==== map content css start ====?//
+html {
+    scroll-behavior: smooth;
+}
+.map-content {
+    margin-bottom: 30px;
+    .section-wrapper {
+        .content-left {
+            .content-item {
+                padding: 20px 16px;
+                @extend %shadow;
+                border-radius: 5px;
+                margin-bottom: 30px;
+                .item-text {
+                    padding-bottom: 16px;
+                    h4 {
+                        margin: 0;
+                        line-height: 1.3;
+                        padding-bottom: 10px;
+                    }
+                    p {
+                        margin: 0;
+                        strong {
+                            display: inline-block;
+                        }
+                    }
+                }
+                .item-descrip {
+                    h5 {
+                        margin: 0;
+                    }
+                    p {
+                        margin: 0;
+                        font-size: 15px;
+                        padding-bottom: 12px;
+                        &.last-descrip {
+                            padding-bottom: 0;
+                        }
+                    }
+                }
+            }
+        }
+        .content-right {
+            position: sticky;
+            top: 76px;
+            z-index: 10;
+            .content-menu {
+                padding: 16px;
+                border-radius: 5px;
+                background: #fff;
+                @extend %shadow;
+                height: 100vh;
+                overflow-y: scroll;
+                &.fixed {
+                    position: relative;
+                    // @include breakpoint (lg) {
+                    //     position: fixed;
+                    //     top: 0;
+                    //     max-width: 300px;
+                    // }
+                    // @include breakpoint (xl) {
+                    //     max-width: 380px;
+                    // }
+                }
+                ul.sidebar-menu-list {
+                    margin: 0;
+                    padding: 0;
+                    list-style: none;
+                    
+                    li {
+                        margin-bottom: 5px;
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+                        button {
+                            color: #333;
+                            padding: 5px;
+                            width: 100%;
+                            font-size: 15px;
+                            position: relative;
+                            text-decoration: none;
+                            border-radius: 5px;
+                            text-align: left;
+                            transition: all 0.3s ease-in-out;
+                            background: transparent;
+                            &.active {
+                                color: $white-color;
+                                background: $theme-color;
+                            }
+                            &:hover {
+                                color: #fff;
+                                background: $theme-color;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+//?==== map content css ends  ====?//
+
+//?==== location-block css start ====?//
+.how_it_work {
+    padding: 60px 0;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    background-attachment: fixed;
+    background-image: url(../../assets/images/how/01_bg.jpg);
+    border-bottom: 10px solid $white-color;
+    .dark-overlay {
+        @extend %absolute;
+        height: 100%;
+        left: 0;
+        top: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.7) none repeat scroll 0 0;
+
+    }
+    .section-header {
+        z-index: 1;
+        position: relative;
+        h3 {
+            margin: 0;
+            color: $white-color;
+        }
+        p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: $white-color;
+        }
+    }
+    .section-wrapper {
+        z-index: 1;
+        position: relative;
+        padding-top: 60px;
+        .steps_wrap {
+            background: #fff;
+            position: relative;
+            z-index: 1;
+            border-radius: 3px;
+            margin: 0 auto 15px;
+            padding: 20px;
+            @extend %flex;
+            align-items: center;
+            .icon_div {
+                width: 30%;
+                text-align: center;
+                i {
+                    font-size: 45px;
+                    color: $theme-color;
+                }
+            }
+            .text_div {
+                width: calc(100% - 30%);
+                h5 {
+                    margin: 0;
+                    padding-bottom: 5px;
+                }
+                p {
+                    margin: 0;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}
+//?==== location-block css start ====?//
+
+//?=== image map start ====?//
+.map-image {
+    margin: 0 auto;
+    max-width: 700px;
+    height: 100vh;
+}
+//?=== image map ends  ====?//
+
+//?==== map footer css start ====?//
+
+footer {
+    padding: 60px 0;
+    position: relative;
+    background: #262626 url(../../assets/images/footer/space.jpg) no-repeat fixed center bottom;
+    #footer {
+        top:auto;
+	    margin-top: 0px;
+        .footer-blocks {
+            position: relative;
+            .footerleft {
+                #czfootercmsblock {
+                    text-align: center;
+                   h5 {
+                    text-transform: uppercase;
+                    color: #ffffff;
+                    margin: 0px 0 20px 0;
+                    cursor: pointer;
+                    letter-spacing: 0.5px;	
+                   } 
+                   ul#footerlogo {
+                       padding: 0;
+                       margin: 0;
+                       list-style: none;
+                       li {
+                           i , span {
+                               font-size: 14px;
+                               color: $white-color;
+                           }
+                       }
+                   }
+                }
+            }
+            .column {
+                text-align: center;
+                @include breakpoint (md) {
+                    border-left: 1px solid $border-color;
+                }
+                h5 {
+                    text-transform: uppercase;
+                    color: #ffffff;
+                    margin: 0px 0 20px 0;
+                    cursor: pointer;
+                    letter-spacing: 0.5px;	
+                }
+                ul.quick-link {
+                    padding: 0;
+                    margin: 0;
+                    @extend %flex;
+                    align-items: center;
+                    list-style: none;
+                    justify-content: center;
+                    li {
+                        &:first-child {
+                            a {
+                                &::after {
+                                    border-left: none;
+                                }
+                            }
+                        }
+                        a {
+                            padding: 0 12px;
+                            color: #ffffff;
+                            position: relative;
+                            font-size: 14px;
+                            letter-spacing: 0.5px;
+                            &::after {
+                                content: "";
+                                border-left: 1px solid #505d6b;
+                                display: block;
+                                font-family: "$font-icon";
+                                height: 12px;
+                                margin-left: 0;
+                                position: absolute;
+                                top: 3px;
+                                left: -2px;
+                            }
+                            &:focus {
+                                color:#0ddbd8;
+                                background-position: 0 -23px; 
+                            }
+                            &:hover {
+                                color: #fff;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .footer-bottom {
+        position: relative;
+        .block-social {
+            padding: 30px 0;
+            ul.social-link {
+                margin: 0;
+                padding: 0;
+                @extend %flex;
+                align-items: center;
+                justify-content: center;
+                list-style: none;
+                li {
+                    a {
+                        margin: 5px;
+                        &:hover {
+                            i {
+                                transform: rotateY(180deg);
+                                color: $white-color;
+                                background: $theme-color;
+                            }
+                        }
+                        i {
+                            height: 30px;
+                            width: 30px;
+                            line-height: 30px;
+                            text-align: center;
+                            border-radius: 100%;
+                            background: $white-color;
+                            transition: all 0.3s ease-in-out;
+                        }
+                    }
+                }
+            }
+        }
+        .powered-text {
+            p {
+                margin: 0;
+                color: #fff;
+                text-align: center;
+                a {
+                    color: #fff;
+                    font-weight: 600;
+                    text-decoration: none;
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+    .footer-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        background: rgba(19, 15, 15, 0.5);
+    }
+}
+//?==== map footer css ends  ====?//
